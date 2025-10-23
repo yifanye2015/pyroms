@@ -1,4 +1,41 @@
-# gridid definition file
+# gridid definition file 
+# follow exact format if updating manually (since it is hardcoded elsewhere like in grid.py)
+# (variable_name <space> = <space> variable, start and end each block with '#')
+# only include comments above the line below
+# update grid ids below this line ------------------
+#
+id      = MY_PROJECT_NAME
+name    = my_project_name
+grdfile = /home/yeyifan/pyroms/test_pyroms/straits.nc
+N       = 15
+grdtype = roms
+Vtrans  = 2
+theta_s = 8
+theta_b = 4
+Tcline  = 20
+#
+#
+id      = NAME_IN_CAPS
+name    = Example
+grdfile = path/to/gridbuilder/grid
+N       = 15
+grdtype = roms
+Vtrans  = default is 2
+theta_s = 8
+theta_b = 4
+Tcline  = 20
+#
+#
+id      = PENANG
+name    = PENANG
+grdfile = /home/yeyifan/pyroms/Palau_HYCOM/straits.nc
+N       = 15
+grdtype = roms
+Vtrans  = 2
+theta_s = 8
+theta_b = 4
+Tcline  = 20
+#
 #
 id      = CORAL
 name    = Coral Triangle
@@ -141,3 +178,4 @@ Vtrans  = 1
 theta_s = 5
 theta_b = 0.4
 Tcline  = 10
+#

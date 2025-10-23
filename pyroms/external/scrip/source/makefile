@@ -44,7 +44,7 @@ endif
 
 FC = gfortran
 F2PY = f2py
-FFLAGS = -g -fdefault-real-8 -ffixed-form -O2 -fPIC
+FFLAGS = -g -fdefault-real-8 -ffixed-form -O2 -fPIC -I/usr/include
 F2PY_F90_FLAGS = '-g -fdefault-real-8 -ffixed-form -O2 -fPIC'
 INCLUDE = -I$(SRCDIR) -I$(NETCDF_INCDIR)
 LIB = -L$(SRCDIR) -L$(NETCDF_LIBDIR) $(NETCDF_LIBS)

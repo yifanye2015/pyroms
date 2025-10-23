@@ -78,7 +78,7 @@ class ROMS_gridinfo(object):
       #check if the grid_file and hist_files are both null; if so get data from gridid.txt
       if (type(grid_file)==type(None))&(type(hist_file)==type(None)):
         #print 'CJMP> gridid not in dictionary, data will be retrieved from gridid.txt'
-        gridid_file =  os.getenv("PYROMS_GRIDID_FILE")
+        gridid_file = os.path.expanduser('~/pyroms/pyroms/pyroms/gridid.txt')
         data = open(gridid_file,'r')
         lines = data.readlines()
         data.close()
@@ -198,7 +198,7 @@ def list_ROMS_gridid():
     return the list of the defined gridid
     """
 
-    gridid_file = os.getenv("PYROMS_GRIDID_FILE")
+    gridid_file = os.path.expanduser('~/pyroms/pyroms/pyroms/gridid.txt')
     data = open(gridid_file,'r')
     lines = data.readlines()
     data.close()

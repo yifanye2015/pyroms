@@ -5,12 +5,12 @@ from mpl_toolkits.basemap import pyproj
 from pyroms_toolbox.Grid_HYCOM import Grid_HYCOM
 
 
-def get_nc_Grid_HYCOM(grdfile, name='GLBa0.08_NEP'):
+def get_nc_Grid_HYCOM(grdfile, name='GLBy0.08_NEP'):
 
     """
     grd = get_nc_Grid_HYCOM(grdfile)
 
-    Load grid object for HYCOM_GLBa0.08_NEP
+    Load grid object for HYCOM_GLBy0.08_NEP
     """
 
     nc = netCDF4.Dataset(grdfile)
