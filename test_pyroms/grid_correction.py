@@ -1,5 +1,6 @@
 import xarray as xr
 import numpy as np
+import netCDF4
 import os
 
 # Path to the grid file
@@ -25,6 +26,40 @@ ds.to_netcdf(local_grid, mode="w")
 print("Bathymetry correction complete.")
 # print(f"New depth min: {h_corrected.min()}")
 # print(f"New depth max: {h_corrected.max()}")
+
+def index_strictly_lower(array, x):
+    """
+    Return index i such that lon[i] < x and lon[i] is the largest value < x.
+    If no such element exists, return 0.
+    """
+    x = float(x)
+    array = np.asarray(array)
+    idx = np.searchsorted(array, x, side='left') - 1
+    return max(idx, 0)
+
+
+def index_strictly_greater(array, x):
+    """
+    Return index j such that lon[j] > x and lon[j] is the smallest value > x.
+    If no such element exists, return len(lon)-1.
+    """
+    x = float(x)
+    array = np.asarray(array)
+    idx = np.searchsorted(array, x, side='right')
+    return min(idx, len(array)-1)
+
+dataset = netCDF4.Dataset('http://tds.hycom.org/thredds/dodsC/datasets/GLBy0.08/expt_93.0/data/hindcasts/2019/hycom_glby_930_2019010112_t000_ts3z.nc')
+lon = dataset.variables['lon']
+lat = dataset.variables['lat']
+
+lon_index_lower = index_strictly_lower(lon, os.getenv("MAP_LON_WEST"))
+lon_index_upper = index_strictly_greater(lon, os.getenv("MAP_LON_EAST"))
+lat_index_lower = index_strictly_lower(lat, os.getenv("MAP_LAT_SOUTH"))
+lat_index_upper = index_strictly_greater(lat, os.getenv("MAP_LAT_NORTH"))
+print(lon_index_lower, lon_index_upper, lat_index_lower, lat_index_upper)
+## need to make this update config with the indices
+## see how to not repeat download dataset (it overlaps with hycom_grid.py)
+
 
 # Verify the MATLAB and python scripts produce the same result; feel free to delete everything below this line
 # mat = xr.open_dataset("straits.nc")
