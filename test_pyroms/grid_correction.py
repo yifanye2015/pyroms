@@ -57,8 +57,8 @@ lon_index_lower = index_strictly_lower(lon, os.getenv("MAP_LON_WEST"))
 lon_index_upper = index_strictly_greater(lon, os.getenv("MAP_LON_EAST"))
 lat_index_lower = index_strictly_lower(lat, os.getenv("MAP_LAT_SOUTH"))
 lat_index_upper = index_strictly_greater(lat, os.getenv("MAP_LAT_NORTH"))
-print(f"Latitude index =     {lat_index_lower} to {lat_index_upper}")
-print(f"Longitude index =    {lon_index_lower} to {lon_index_upper}")
+print(f"Latitude index:     {lat_index_lower} to {lat_index_upper}")
+print(f"Longitude index:    {lon_index_lower} to {lon_index_upper}")
 
 config_file = "config.env"
 
