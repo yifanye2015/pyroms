@@ -10,10 +10,10 @@ import sys
 import os
 import pandas as pd
 
-lon_index_lower = 1253
-lon_index_upper = 1300
-lat_index_lower = 2136
-lat_index_upper = 2140
+lon_index_lower = int(os.getenv("MAP_LON_INDEX_LOWER"))
+lon_index_upper = int(os.getenv("MAP_LON_INDEX_UPPER"))
+lat_index_lower = int(os.getenv("MAP_LAT_INDEX_LOWER"))
+lat_index_upper = int(os.getenv("MAP_LAT_INDEX_UPPER"))
 
 def create_HYCOM_file(name, time, lon, lat, z, var):
 
@@ -132,7 +132,8 @@ for date_tag in date_list:
     #create netCDF file
     period = pd.Period(pd.to_datetime(f"{year_tag}{date_tag}", format="%Y%m%d"), freq='H') #Using panda library to convert date format
     day = period.dayofyear #Convert to Julian day
-    outfile = 'data/HYCOM_GLBy0.08_%s_%04d_%03d.nc' %(outvarname,year,day)
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    outfile = os.path.join(script_dir, 'data/HYCOM_GLBy0.08_%s_%04d_%03d.nc' %(outvarname,year,day))
     jday = pyroms_toolbox.date2jday(datetime(year, 1, 1)) + day - 1
     create_HYCOM_file(outfile, jday, lon, lat, z, var)
 

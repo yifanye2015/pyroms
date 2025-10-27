@@ -11,10 +11,10 @@ import os
 
 print("Processing HYCOM grid for project " + os.getenv("PROJECT_NAME"))
 
-lon_index_lower = 1253
-lon_index_upper = 1300
-lat_index_lower = 2136
-lat_index_upper = 2140
+lon_index_lower = int(os.getenv("MAP_LON_INDEX_LOWER"))
+lon_index_upper = int(os.getenv("MAP_LON_INDEX_UPPER"))
+lat_index_lower = int(os.getenv("MAP_LAT_INDEX_LOWER"))
+lat_index_upper = int(os.getenv("MAP_LAT_INDEX_UPPER"))
 
 # get HYCOM Northeast Pacific data from 2007 to 2011
 
@@ -47,7 +47,8 @@ dataset.close()
 
 
 #create netCDF file
-outfile = 'data/HYCOM_GLBy0.08_' + os.getenv("PROJECT_NAME") + '_grid.nc'
+script_dir = os.path.dirname(os.path.abspath(__file__))
+outfile = os.path.join(script_dir, 'data/HYCOM_GLBy0.08_' + os.getenv("PROJECT_NAME") + '_grid.nc')
 nc = netCDF4.Dataset(outfile, 'w', format='NETCDF3_64BIT')
 nc.Created = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 nc.title = 'HYCOM + NCODA Global 1/12 Analysis (GLBy0.08)'

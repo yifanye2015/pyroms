@@ -28,6 +28,7 @@ print("Bathymetry correction complete.")
 # print(f"New depth min: {h_corrected.min()}")
 # print(f"New depth max: {h_corrected.max()}")
 
+
 def index_strictly_lower(array, x):
     """
     Return index i such that lon[i] < x and lon[i] is the largest value < x.
@@ -49,6 +50,7 @@ def index_strictly_greater(array, x):
     idx = np.searchsorted(array, x, side='right')
     return min(idx, len(array)-1)
 
+print("Extracting HYCOM lat/lon index bounds...")
 dataset = netCDF4.Dataset('http://tds.hycom.org/thredds/dodsC/datasets/GLBy0.08/expt_93.0/data/hindcasts/2019/hycom_glby_930_2019010112_t000_ts3z.nc')
 lon = dataset.variables['lon']
 lat = dataset.variables['lat']
@@ -60,7 +62,8 @@ lat_index_upper = index_strictly_greater(lat, os.getenv("MAP_LAT_NORTH"))
 print(f"Latitude index:     {lat_index_lower} to {lat_index_upper}")
 print(f"Longitude index:    {lon_index_lower} to {lon_index_upper}")
 
-config_file = "config.env"
+script_dir = os.path.dirname(os.path.abspath(__file__))
+config_file = os.path.join(script_dir, 'config.env')
 
 # Convert indices to strings
 lon_index_lower_str = str(lon_index_lower)

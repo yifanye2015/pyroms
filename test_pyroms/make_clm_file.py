@@ -1,8 +1,6 @@
 import subprocess
-# import commands
 import os
 import sys
-import subprocess
 import numpy as np
 from datetime import datetime
 import matplotlib
@@ -19,8 +17,9 @@ lst_year = sys.argv[1:]
 project_name = os.getenv("PROJECT_NAME")
 grid_id = project_name.upper()
 
-data_dir = './data/'
-dst_dir='./clm/'
+script_dir = os.path.dirname(os.path.abspath(__file__))
+data_dir = os.path.join(script_dir, 'data/')
+dst_dir = os.path.join(script_dir, 'clm/')
 
 lst_file = []
 
@@ -36,8 +35,10 @@ print('Build CLM file from the following file list:')
 print(lst_file)
 print(' ')
 
-src_grd = pyroms_toolbox.Grid_HYCOM.get_nc_Grid_HYCOM(data_dir + 'HYCOM_GLBy0.08_' + project_name + '_grid.nc')
+src_grd_file = os.path.join(data_dir, 'HYCOM_GLBy0.08_' + project_name + '_grid.nc')
+src_grd = pyroms_toolbox.Grid_HYCOM.get_nc_Grid_HYCOM(src_grd_file)
 dst_grd = pyroms.grid.get_ROMS_grid(grid_id)
+
 
 for file in lst_file:
 # remap

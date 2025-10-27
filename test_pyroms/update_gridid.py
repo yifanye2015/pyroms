@@ -11,7 +11,8 @@ theta_s = os.getenv("GRID_THETA_S")
 theta_b = os.getenv("GRID_THETA_B")
 tcline = os.getenv("GRID_TCLINE")
 
-gridid_txt = os.path.expanduser('~/pyroms/pyroms/pyroms/gridid.txt') # need to make this relative to test_pyroms
+script_dir = os.path.dirname(os.path.abspath(__file__))
+gridid_txt = os.path.join(script_dir, '../pyroms/pyroms/gridid.txt')
 
 # Read the current file, removes any empty lines so it will be written back without empty lines
 with open(gridid_txt, 'r') as f:

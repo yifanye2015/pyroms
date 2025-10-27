@@ -1,14 +1,8 @@
 #!/bin/bash
 
-# if [ -f "config.env" ]; then
-#     echo "Loading configuration from config.env..."
-#     set -a                   # automatically export all variables
-#     source config.env
-#     set +a
-# else
-#     echo "❌ Error: config.env not found in current directory."
-#     exit 1
-# fi
+# Change to the directory containing this script
+script_dir=$(cd "$(dirname "$0")" && pwd)
+cd "$script_dir"
 
 source config.env
 

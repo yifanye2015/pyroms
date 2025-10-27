@@ -22,9 +22,9 @@ from remap_bdry_uv import remap_bdry_uv
 project_name = os.getenv("PROJECT_NAME")
 grid_id = project_name.upper()
 
-# Consider changing to relative file path from this file, see remap_weights.py for reference
-data_dir = './data/'
-dst_dir='./bdry/'
+script_dir = os.path.dirname(os.path.abspath(__file__))
+data_dir = os.path.join(script_dir, 'data/')
+dst_dir = os.path.join(script_dir, 'bdry/')
 
 def do_file(file, src_grd, dst_grd):
     zeta = remap_bdry(file, 'ssh', src_grd, dst_grd, dst_dir=dst_dir)
@@ -75,7 +75,7 @@ print('Build OBC file from the following file list:')
 print(lst_file)
 print(' ')
 
-src_grd_file = data_dir + 'HYCOM_GLBy0.08_' + project_name + '_grid.nc'
+src_grd_file = os.path.join(data_dir, 'HYCOM_GLBy0.08_' + project_name + '_grid.nc')
 src_grd = pyroms_toolbox.Grid_HYCOM.get_nc_Grid_HYCOM(src_grd_file)
 dst_grd = pyroms.grid.get_ROMS_grid(grid_id)
 
