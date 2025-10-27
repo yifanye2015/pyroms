@@ -7,7 +7,8 @@ import os
 local_grid = os.getenv("GRIDBUILDER_PATH")
 
 # Load the dataset
-ds = xr.open_dataset(local_grid)
+ds = xr.open_dataset(local_grid).load()
+ds.close()
 
 # Extract bathymetry
 h = ds['h'].values
@@ -56,8 +57,41 @@ lon_index_lower = index_strictly_lower(lon, os.getenv("MAP_LON_WEST"))
 lon_index_upper = index_strictly_greater(lon, os.getenv("MAP_LON_EAST"))
 lat_index_lower = index_strictly_lower(lat, os.getenv("MAP_LAT_SOUTH"))
 lat_index_upper = index_strictly_greater(lat, os.getenv("MAP_LAT_NORTH"))
-print(lon_index_lower, lon_index_upper, lat_index_lower, lat_index_upper)
-## need to make this update config with the indices
+print(f"Latitude index =     {lat_index_lower} to {lat_index_upper}")
+print(f"Longitude index =    {lon_index_lower} to {lon_index_upper}")
+
+config_file = "config.env"
+
+# Convert indices to strings
+lon_index_lower_str = str(lon_index_lower)
+lon_index_upper_str = str(lon_index_upper)
+lat_index_lower_str = str(lat_index_lower)
+lat_index_upper_str = str(lat_index_upper)
+
+# Read file
+with open(config_file, "r") as f:
+    lines = f.readlines()
+
+# Replace the lines
+new_lines = []
+for line in lines:
+    if line.startswith("export MAP_LAT_INDEX_LOWER="):
+        new_lines.append(f"export MAP_LAT_INDEX_LOWER={lat_index_lower_str}\n")
+    elif line.startswith("export MAP_LAT_INDEX_UPPER="):
+        new_lines.append(f"export MAP_LAT_INDEX_UPPER={lat_index_upper_str}\n")
+    elif line.startswith("export MAP_LON_INDEX_LOWER="):
+        new_lines.append(f"export MAP_LON_INDEX_LOWER={lon_index_lower_str}\n")
+    elif line.startswith("export MAP_LON_INDEX_UPPER="):
+        new_lines.append(f"export MAP_LON_INDEX_UPPER={lon_index_upper_str}\n")
+    else:
+        new_lines.append(line)
+
+# Write back to config.env
+with open(config_file, "w") as f:
+    f.writelines(new_lines)
+
+print("Updated config.env with new lat/lon index bounds.")
+
 ## see how to not repeat download dataset (it overlaps with hycom_grid.py)
 
 
