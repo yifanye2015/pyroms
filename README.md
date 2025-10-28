@@ -5,7 +5,7 @@ The original README is included here for reference:
 # Pyroms
 Note: this is still a work in progress! A user guide will eventually be written up after everything has been tested. Any *italicised* text are comments for my own use and can be ignored.
 
-This project is a fork of the original Pyroms repo at [ESMG/pyroms](https://github.com/ESMG/pyroms). This version contains both new and modified scripts aimed at simplifying the setup process and reducing the need to perform manual changes to the code, so that new users can get Pyroms running with minimal fuss. The core functionalities remain unchanged. The original README for reference can be found at the end of this README.
+This project is a fork of the original Pyroms repo at [ESMG/pyroms](https://github.com/ESMG/pyroms). This version contains both new and modified scripts aimed at simplifying the setup process and reducing the need to perform manual changes to the code, so that new users can get Pyroms running with minimal fuss. The core functionalities remain unchanged. 
 
 This version is suitable for Python 3.8.
 
