@@ -15,7 +15,7 @@ fi
 
 # --- Step 2. Prompt for environment name ---
 DEFAULT_ENV="pyroms-py38"
-read -p "Choose a conda environment name [no spaces and special characters; default name is ${DEFAULT_ENV}]: " USER_ENV
+read -p "Choose a conda environment name [alphanumeric and hyphens only; default name is ${DEFAULT_ENV}]: " USER_ENV
 USER_ENV=$(echo "${USER_ENV}" | sed 's/^[ \t]*//;s/[ \t]*$//' | tr ' ' '-')
 ENV_NAME=${USER_ENV:-$DEFAULT_ENV}
 
