@@ -6,7 +6,7 @@
 #
 id      = MY_PROJECT_NAME
 name    = my_project_name
-grdfile = /home/yeyifan/pyroms/test_pyroms/straits.nc
+grdfile = /home/yeyifan/pyroms/project_test/hycom_processing/straits.nc
 N       = 15
 grdtype = roms
 Vtrans  = 2

@@ -7,11 +7,11 @@ cd "$script_dir"
 
 source config.env
 
+cd "$script_dir/merra2_processing"
+
 echo -n "Enter a year to process: ";read year; echo ""
 
 start_time=$(date +%s)
-
-source config.env
 
 echo "============================="
 echo " Starting MERRA2 processing for year $year "
@@ -76,6 +76,10 @@ echo "----------------------"
 echo "Adding coordinate attributes..."
 ./add_coordinates_attribute.bash
 echo "Added coordinate attributes."
+
+cp Forcings/*.nc ../output_files/merra2_files/Forcings/
+
+echo "MERRA-2 forcing files copied to output_files/merra2_files"
 
 end_time=$(date +%s)
 elapsed=$(( end_time - start_time ))
