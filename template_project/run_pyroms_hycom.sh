@@ -1,7 +1,9 @@
 #!/bin/bash
 
-# Parse optional flags
+# Defaults for optional behaviors
 run_gridid=false
+
+# Parse flags
 while getopts "g" opt; do
   case "$opt" in
     g) run_gridid=true ;;
