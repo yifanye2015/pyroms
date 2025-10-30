@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# Parse optional flags
+run_gridid=false
+while getopts "g" opt; do
+  case "$opt" in
+    g) run_gridid=true ;;
+  esac
+done
+
 # Change to the directory containing this script
 script_dir=$(cd "$(dirname "$0")" && pwd)
 cd "$script_dir"
@@ -20,7 +28,12 @@ echo " Started at: $(date)"
 echo "============================="
 echo ""
 
-# python3 update_gridid.py
+if [ "$run_gridid" = true ]; then
+    echo "----------------------"
+    echo "Running update_gridid.py because -g flag was provided..."
+    python3 update_gridid.py
+fi
+
 python3 get_hycom_GLBy0.08_Palau_grid.py
 echo "----------------------"
 echo "Starting salt..."
