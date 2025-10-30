@@ -13,7 +13,7 @@ This version is suitable for Python 3.8.
 The [ROMS tutorial](https://www.youtube.com/playlist?list=PLBPoOsxO35OpUFOMoDUUcxf_XKXo-ugKY) on YouTube by Yusri Yusup (without which this project would not be possible) provides a step-by-step demonstration to get Pyroms and ROMS running.
 
 ## Prerequisites
-Pyroms must be installed on a Linux machine; Ubuntu and WSL are recommmended. This version requires [Anaconda](https://www.anaconda.com/) to be installed. The workflow also uses GridBuilder, which is a Windows application that can be downloaded [here](https://austides.com/downloads/).
+Pyroms must be installed on a Linux machine (does not work on MacOS); Ubuntu and WSL are recommmended. This version requires [Anaconda](https://www.anaconda.com/) to be installed. The workflow also uses GridBuilder, which is a Windows application that can be downloaded [here](https://austides.com/downloads/). 
 
 ## Installation (untested)
 To clone a copy of the source and install the pyroms packages, you can use the following commands
@@ -76,13 +76,12 @@ GridBuilder parameters to be noted down during grid creation:
 Next, using Google Maps, mark out a rectangular region that completely encompasses the ROMS grid, and note down the latitudes and longitudes of the corners (*include pictures*). 
 
 ### Creating a new project
-(*A script which will do the setup automatically will be made eventually*)
-
 This is an overview of the pyroms directory structure:
 ```
 pyroms/
 ├── setup_conda_env_pyroms.sh
 ├── environment.yaml
+├── start_new_project.sh
 ├── template_project/
 │   ├── hycom_processing/
 │   │   └── scripts.py
@@ -102,21 +101,22 @@ pyroms/
 There is a template directory `template_project` in the top pyroms directory, which contains subdirectories `hycom_processing`, `merra2_processing` and `output_files`. `hycom_processing` contains scripts that process HYCOM files to produce boundary, climate, and initial condition files, and `merra2_processing` contains scripts that process MERRA-2 files to produce forcing files. Processed files can be found in `output_files`.
 
 All necessary scripts and subdirectories are in the template directory and should not be changed. Ideally the only things needed to be run/edited/opened are:
-- `setup_conda_env_pyroms.sh` for initial setup
+- `setup_conda_env_pyroms.sh` for initial conda setup
+- `start_new_project.sh` to create a new project directory
 - `config.env` for setting project parameters
 - `run_pyroms_hycom.sh` and `run_pyroms_merra2.sh` to run the processing scripts
 - `output_files` for retrieving processed files
 
-To create a new project, simply duplicate the template directory `template_project` and rename it (e.g. my_project_name) (*need better template dir name*):
+To create a new project, simply run:
 ```
-cp template_project my_project_name
+./start_new_project.sh
 ```
+where you will be prompted for a project name, and the project directory will be created.
 
 From here on, make sure the previously set up conda environment is activated (*will include code to check this at runtime*).
 ### HYCOM data
-First, move the file created by GridBuilder into `hycom_processing`. (*might change the location to template_project in the future*)
-In `my_project_name`, open `config.env`, and change/update these variables (do not use spaces):
-- PROJECT_NAME (choose a memorable name such as penang_2019)
+First, move the file created by GridBuilder into `hycom_processing` (*might change the location to template_project in the future*).
+Next, in `config.env`, change/update these variables (do not use spaces):
 - YEAR (year to be analysed) (*might allow year ranges in the future*)
 - GRIDBUILDER_NAME (name of the file created from GridBuilder)
 - GRIDBUILDER_PATH (the full path to the GridBuilder file; can use `pwd` to get the path to test_pyroms and append the filename to it)
@@ -124,11 +124,14 @@ In `my_project_name`, open `config.env`, and change/update these variables (do n
 - MAP_LAT_SOUTH, MAP_LAT_NORTH, MAP_LON_WEST, MAP_LON_EAST (coordinates of region from Google Maps)
 - GRID_N, GRID_TYPE, GRID_VTRANS, GRID_THETA_S, GRID_THETA_B, GRID_TCLINE (also GridBuilder parameters, *will fix this duplication eventually*)
 - HYCOM_START_DATE, HYCOM_END_DATE (date range to analyse)
+
 Save the file.
 
-Extra step: for the first run, go into `run_pyroms_hycom.sh`, uncomment `python3 update_gridid.py` and save the file. For subsequent runs, keep that line commented out unless there are any changes to the GridBuilder grid. (*probably add a flag in the future to only activate it if requested*)
-
-Run all scripts with
+For the first run, or if **any** GridBuilder grid parameters/filename/location have been changed in `config.env`, include a `-g` flag to update `gridid.txt`:
+```
+./run_pyroms_hycom.sh -g
+```
+For other runs, the `-g` flag may be omitted:
 ```
 ./run_pyroms_hycom.sh
 ```
@@ -138,16 +141,17 @@ Python scripts can also be run individually with generated files remaining in `h
 ### MERRA-2 data
 First, go to [NASA Earthdata](https://urs.earthdata.nasa.gov) to create an account, and note down your username and password. 
 
-In `my_project_name`, open `config.env`, and change/update these variables (do not use spaces):
+In `config.env`, change/update these variables (do not use spaces):
 - EARTHDATA_USERNAME, EARTHDATA_PASSWORD (*will change this to use .netrc when I eventually figure it out*)
 - MERRA2_START_DATE, MERRA2_END_DATE (date range to analyse)
+
 Save the file.
 
 Run all scripts with
 ```
-./get_MERRA_Forcings_from_nasa_opendap_3hours.bash
+./run_pyroms_merra2.sh
 ```
 
-Python scripts can also be run individually with generated files remaining in `merra2_processing`; ensure `source config.env` is run before that, and run `./add_coordinates_attribute.bash` after that.
+Python scripts can also be run individually with generated files remaining in `merra2_processing`; ensure `source config.env` is run before that, and run `./add_coordinates_attribute.bash` after running the scripts.
 
 Boundary, climate, initial condition, forcing files are successfully generated in `output_files`.
