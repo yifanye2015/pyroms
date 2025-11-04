@@ -54,6 +54,21 @@ $ mv -vf scrip*.so ../../../pyroms
 ```
 (*should write a script to do this*)
 
+## Installation using script (untested)
+To clone a copy of the source and install the pyroms packages, you can use the following commands
+```
+# Cd to a convenient directory (e.g. home directory ~/)
+$ git clone https://github.com/yifanye2015/pyroms.git
+$ cd pyroms
+$ ./setup_conda_env_pyroms.sh
+# This sets up the requisite conda environment
+
+# First activate the conda environment
+$ conda activate <environment-name>
+# Run the SCRIP installer script
+$ ./install_scrip.sh
+```
+
 ## Set up conda environment for the first time
 In the top level `pyroms/` directory, run
 ```
