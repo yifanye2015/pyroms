@@ -6,6 +6,13 @@ script_dir=$(cd "$(dirname "$0")" && pwd)
 cd "$script_dir"
 
 source config.env
+source .env
+
+if [ -z "$EARTHDATA_USERNAME" ] || [ -z "$EARTHDATA_PASSWORD" ]; then
+    echo "Error: EARTHDATA_USERNAME and EARTHDATA_PASSWORD must be set in .env"
+    echo "Please update .env with your Earthdata credentials before running MERRA-2 processing."
+    exit 1
+fi
 
 cd "$script_dir/merra2_processing"
 

@@ -15,6 +15,7 @@ script_dir=$(cd "$(dirname "$0")" && pwd)
 cd "$script_dir"
 
 source config.env
+source .env
 
 cd "$script_dir/hycom_processing"
 

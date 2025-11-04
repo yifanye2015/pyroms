@@ -89,6 +89,7 @@ pyroms/
 │   │   └── scripts.py
 │   ├── output_files/
 │   │   └── files.nc
+│   ├── .env(.template)
 │   ├── config.env
 │   ├── run_pyroms_hycom.sh
 │   └── run_pyroms_merra2.sh
@@ -103,6 +104,7 @@ There is a template directory `template_project` in the top pyroms directory, wh
 All necessary scripts and subdirectories are in the template directory and should not be changed. Ideally the only things needed to be run/edited/opened are:
 - `setup_conda_env_pyroms.sh` for initial conda setup
 - `start_new_project.sh` to create a new project directory
+- `.env` for storing login credentials (when a new project is created, `.env.template` will be replaced with `.env` automatically)
 - `config.env` for setting project parameters
 - `run_pyroms_hycom.sh` and `run_pyroms_merra2.sh` to run the processing scripts
 - `output_files` for retrieving processed files
@@ -139,10 +141,9 @@ For other runs, the `-g` flag may be omitted:
 Python scripts can also be run individually with generated files remaining in `hycom_processing`; ensure `source config.env` is run before that.
 
 ### MERRA-2 data
-First, go to [NASA Earthdata](https://urs.earthdata.nasa.gov) to create an account, and note down your username and password. 
+First, go to [NASA Earthdata](https://urs.earthdata.nasa.gov) to create an account, and store your username and password in `.env`. 
 
 In `config.env`, change/update these variables (do not use spaces):
-- EARTHDATA_USERNAME, EARTHDATA_PASSWORD (*will change this to use .netrc when I eventually figure it out*)
 - MERRA2_START_DATE, MERRA2_END_DATE (date range to analyse)
 
 Save the file.

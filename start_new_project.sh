@@ -28,6 +28,7 @@ cp -r template_project "$PROJ_NAME"
 cd "$PROJ_NAME"
 
 CONFIG_FILE="config.env"
+ENV_FILE=".env"
 
 if [ ! -f "${CONFIG_FILE}" ]; then
     echo "${CONFIG_FILE} not found. Please copy one in from the template folders."
@@ -37,4 +38,8 @@ else
     sed -i "s|^export PROJECT_NAME=.*|export PROJECT_NAME='${PROJ_NAME}'|" "${CONFIG_FILE}"
 fi
 
+cp .env.template .env
+rm .env.template
+
 echo "New project created at: $script_dir/$PROJ_NAME"
+echo "Remember to update .env with your Earthdata credentials before running MERRA-2 processing."
