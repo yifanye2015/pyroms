@@ -41,5 +41,15 @@ fi
 cp .env.template .env
 rm .env.template
 
+mkdir -p "hycom_processing/bdry"
+mkdir -p "hycom_processing/clm"
+mkdir -p "hycom_processing/ic"
+mkdir -p "hycom_processing/data/raw"
+mkdir -p "merra2_processing/Forcings"
+mkdir -p "output_files/hycom_files/bdry"
+mkdir -p "output_files/hycom_files/clm"
+mkdir -p "output_files/hycom_files/ic"
+mkdir -p "output_files/merra2_files/Forcings"
+
 echo "New project created at: $script_dir/$PROJ_NAME"
 echo "Remember to update .env with your Earthdata credentials before running MERRA-2 processing."
