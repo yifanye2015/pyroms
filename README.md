@@ -54,33 +54,27 @@ $ mv -vf scrip*.so ../../../pyroms
 ```
 (*should write a script to do this*)
 
-## Installation using script (untested)
-To clone a copy of the source and install the pyroms packages, you can use the following commands
+## Installation using scripts
+First, install conda on Linux using default options, and run `anaconda3/bin/conda init` from the conda installation location. Restart Ubuntu.
+
+To clone a copy of the source and set up pyroms, you can use the following commands:
 ```
 # Cd to a convenient directory (e.g. home directory ~/)
-$ git clone https://github.com/yifanye2015/pyroms.git
+$ git clone git@github.com:yifanye2015/pyroms.git
 $ cd pyroms
 $ ./setup_conda_env_pyroms.sh
-# This sets up the requisite conda environment
+# This sets up and activates the requisite conda environment
+# The script will also prompt you to install ksh and nco for the pyroms scripts to work
+$ sudo apt install ksh nco
 
-# First activate the conda environment
-$ conda activate <environment-name>
 # Run the SCRIP installer script
 $ ./install_scrip.sh
 ```
 
-## Set up conda environment for the first time
-In the top level `pyroms/` directory, run
-```
-./setup_conda_env_pyroms.sh
-```
-This sets up the necessary conda environment for pyroms to work. Subsequently, run
-```
-conda activate <environment-name>
-```
-at the start of every session to activate the conda environment.
-
 ## Using Pyroms
+### Activating conda
+Run `conda activate <environment-name>` at the start of every session to activate the conda environment.
+
 ### Creating the ROMS grid for the region of interest with GridBuilder and Google Maps
 First, select the region of interest in GridBuilder, and generate the ROMS grid while noting down some grid parameters listed below (a guide can be found [here](https://austides.com/wp-content/uploads/GridBuilder-v0.99.pdf)). 
 

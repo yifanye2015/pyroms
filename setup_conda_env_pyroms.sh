@@ -29,12 +29,14 @@ fi
 
 echo "Creating conda environment from environment.yaml..."
 # Commented out for testing, uncomment when ready
-# conda env create -n "${ENV_NAME}" -f environment.yaml || {
-#     echo "Environment ${ENV_NAME} may already exist. Attempting update..."
-#     conda env update -n "${ENV_NAME}" -f environment.yaml
-# }
+conda env create -n "${ENV_NAME}" -f environment.yaml || {
+    echo "Environment ${ENV_NAME} may already exist. Attempting update..."
+    conda env update -n "${ENV_NAME}" -f environment.yaml
+}
 
 echo "Conda environment '${ENV_NAME}' is ready."
+
+conda activate "${ENV_NAME}"
 
 # --- Step 4. Update config.env ---
 # CONFIG_FILE="config.env"
@@ -60,6 +62,9 @@ echo "To see all installed environments, run:"
 echo "    conda env list"
 echo "To remove your environment, run:"
 echo "    conda env remove -n ${ENV_NAME}"
+echo ""
+echo "Additionally, ensure you have ksh and ncks installed by running:"
+echo "sudo apt install ksh nco"
 
 # echo -e '
 # meow  |\__/,|   (`\
