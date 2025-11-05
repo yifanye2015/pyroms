@@ -36,8 +36,6 @@ conda env create -n "${ENV_NAME}" -f environment.yaml || {
 
 echo "Conda environment '${ENV_NAME}' is ready."
 
-conda activate "${ENV_NAME}"
-
 # --- Step 4. Update config.env ---
 # CONFIG_FILE="config.env"
 

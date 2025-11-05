@@ -3,7 +3,7 @@ The original README is included here for reference:
 [![Original](https://img.shields.io/badge/Original%20README-blue)](https://github.com/yifanye2015/pyroms/blob/main/README-original.md)
 
 # Pyroms
-Note: this is still a work in progress! A user guide will eventually be written up after everything has been tested. Any *italicised* text are comments for my own use and can be ignored.
+Note: the installation and processing scripts have been verified to work. A proper user guide will eventually be written up. Any *italicised* text are comments for my own use and can be ignored. `Palau_HYCOM`, `test_MERRA2` and `test_pyroms` are for testing only and can be ignored.
 
 This project is a fork of the original Pyroms repo at [ESMG/pyroms](https://github.com/ESMG/pyroms). This version contains both new and modified scripts aimed at simplifying the setup process and reducing the need to perform manual changes to the code, so that new users can get Pyroms running with minimal fuss. The core functionalities remain unchanged. 
 
@@ -14,45 +14,6 @@ The [ROMS tutorial](https://www.youtube.com/playlist?list=PLBPoOsxO35OpUFOMoDUUc
 
 ## Prerequisites
 Pyroms must be installed on a Linux machine (does not work on MacOS); Ubuntu and WSL are recommmended. This version requires [Anaconda](https://www.anaconda.com/) to be installed. The workflow also uses GridBuilder, which is a Windows application that can be downloaded [here](https://austides.com/downloads/). 
-
-## Installation (untested)
-To clone a copy of the source and install the pyroms packages, you can use the following commands
-```
-# Cd to a convenient directory (e.g. home directory ~/)
-$ git clone https://github.com/yifanye2015/pyroms.git
-$ cd pyroms/test_pyroms
-$ ./setup_conda_env_pyroms.sh
-# This sets up the requisite conda environment
-
-# Cd back to that convenient directory (~/)
-$ pip install -e pyroms/pyroms
-$ pip install -e pyroms/pyroms_toolbox
-$ pip install -e pyroms/bathy_smoother
-```
-
-### Install SCRIP (untested)
-This is needed to unlock all functionalities.
-```
-# Start in that convenient directory into which you cloned pyroms.
-# Cd to the SCRIP source directory.
-$ cd pyroms/pyroms/external/scrip/source/
-
-# Print the location of the active Conda environment.
-# The active environment location is used to find the netCDF and
-# other libraries.
-$ conda info | grep "active env location"
-    active env location : /home/hadfield/miniconda3/envs/python38
-
-# Run make to build the scrip Python extension and install it into the Conda
-# environment. The makefile calculates a variable called SCRIP_EXT_DIR, into
-# which it installs the scrip Python extension. If pyroms has been installed
-# in editable (development) mode, set the DEVELOP variable to a non-empty value.
-$ export PREFIX=/home/hadfield/miniconda3/envs/python38
-$ make DEVELOP=1 PREFIX=$PREFIX install
-$ mv -vf scrip*.so ../../../pyroms
-‘scrip.cpython-38-x86_64-linux-gnu.so’ -> ‘../../../pyroms/scrip.cpython-38-x86_64-linux-gnu.so’
-```
-(*should write a script to do this*)
 
 ## Installation using scripts
 First, install conda on Linux using default options, and run `anaconda3/bin/conda init` from the conda installation location. Restart Ubuntu.
@@ -67,7 +28,9 @@ $ ./setup_conda_env_pyroms.sh
 # The script will also prompt you to install ksh and nco for the pyroms scripts to work
 $ sudo apt install ksh nco
 
-# Run the SCRIP installer script
+# First activate the conda environment
+$ conda activate <environment-name>
+# Run the SCRIP installer script (this is needed to unlock all functionalities)
 $ ./install_scrip.sh
 ```
 
