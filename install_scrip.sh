@@ -28,4 +28,6 @@ make DEVELOP=1 PREFIX=$PREFIX install
 echo "Moving built SCRIP library into pyroms..."
 mv -vf scrip*.so ../../../pyroms/
 
+cd "$script_dir"
+
 echo "Installation complete."
