@@ -5,7 +5,7 @@ channels:
 dependencies:
   - _libgcc_mutex=0.1=main
   - _openmp_mutex=5.1=1_gnu
-  - basemap=1.4.0=py38ha9d4c09_0
+  - basemap=1.2.2=py38ha1e3f77_5
   - basemap-data=1.4.0=py38h06a4308_0
   - basemap-data-hires=1.3.2=pyhd8ed1ab_3
   - blas=1.0=openblas
@@ -15,7 +15,8 @@ dependencies:
   - brotli-python=1.0.9=py38h6a678d5_8
   - bzip2=1.0.8=h5eee18b_6
   - c-ares=1.34.5=hef5626c_0
-  - ca-certificates=2025.9.9=h06a4308_0
+  - ca-certificates=2025.11.12=hbd8a1cb_0
+  - cartopy=0.20.2=py38ha217159_3
   - certifi=2024.8.30=py38h06a4308_0
   - cftime=1.6.2=py38h7deecbd_0
   - charset-normalizer=3.3.2=pyhd3eb1b0_0
@@ -27,7 +28,7 @@ dependencies:
   - fontconfig=2.14.1=h55d465d_3
   - fonttools=4.51.0=py38h5eee18b_0
   - freetype=2.13.3=h4a9f257_0
-  - geos=3.9.1=h295c915_0
+  - geos=3.10.2=h9c3ff4c_0
   - glib=2.84.2=h6a678d5_0
   - glib-tools=2.84.2=h6a678d5_0
   - gst-plugins-base=1.14.1=h6a678d5_1
@@ -118,12 +119,14 @@ dependencies:
   - python=3.8.20=he870216_0
   - python-dateutil=2.9.0post0=py38h06a4308_2
   - python-tzdata=2025.2=pyhd3eb1b0_0
+  - python_abi=3.8=2_cp38
   - pytz=2024.1=py38h06a4308_0
   - qt-main=5.15.2=hb6262e9_12
   - readline=8.3=hc2a1206_0
   - requests=2.32.3=py38h06a4308_0
   - scipy=1.10.1=py38h32ae08f_1
   - setuptools=63.4.1=py38h06a4308_0
+  - shapely=1.8.2=py38h97f7145_1
   - sip=6.7.12=py38h6a678d5_0
   - six=1.16.0=pyhd3eb1b0_1
   - sqlite=3.50.2=hb25bd0a_1
@@ -145,12 +148,10 @@ dependencies:
   - zstd=1.5.7=h11fc155_0
   - pip:
       - beautifulsoup4==4.14.2
-      - cartopy==0.21.1
       - docopt==0.6.2
       - jinja2==3.1.6
       - markupsafe==2.1.5
       - pydap==3.4.1
-      - shapely==2.0.7
       - soupsieve==2.7
       - typing-extensions==4.13.2
       - webob==1.8.9
