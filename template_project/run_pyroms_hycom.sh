@@ -37,6 +37,8 @@ if [ "$run_gridid" = true ]; then
     python3 update_gridid.py
 fi
 
+echo "Starting grid correction..."
+python3 grid_correction.py
 python3 get_hycom_GLBy0.08_Palau_grid.py
 echo "----------------------"
 echo "Starting salt..."
