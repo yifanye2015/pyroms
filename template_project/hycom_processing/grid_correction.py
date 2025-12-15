@@ -31,7 +31,7 @@ print("Bathymetry correction complete.")
 
 def index_strictly_lower(array, x):
     """
-    Return index i such that lon[i] < x and lon[i] is the largest value < x.
+    Return index i such that lon[i] is the largest value < x.
     If no such element exists, return 0.
     """
     x = float(x)
@@ -42,7 +42,7 @@ def index_strictly_lower(array, x):
 
 def index_strictly_greater(array, x):
     """
-    Return index j such that lon[j] > x and lon[j] is the smallest value > x.
+    Return index j such that lon[j] is the smallest value > x.
     If no such element exists, return len(lon)-1.
     """
     x = float(x)
@@ -63,7 +63,7 @@ print(f"Latitude index:     {lat_index_lower} to {lat_index_upper}")
 print(f"Longitude index:    {lon_index_lower} to {lon_index_upper}")
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
-config_file = os.path.join(script_dir, 'config.env')
+config_file = os.path.join(script_dir, '..', 'config.env')
 
 # Convert indices to strings
 lon_index_lower_str = str(lon_index_lower)
