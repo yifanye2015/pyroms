@@ -22,16 +22,16 @@ ENV_NAME=${USER_ENV:-$DEFAULT_ENV}
 echo "Using conda environment name: ${ENV_NAME}"
 
 # --- Step 3. Create or update the environment ---
-if [ ! -f environment.yaml ]; then
-    echo "Error: environment.yaml not found in the current directory. Please copy one in from the template folders."
+if [ ! -f environment_py38.yaml ]; then
+    echo "Error: environment_py38.yaml not found in the current directory. Please copy one in from the template folders."
     exit 1
 fi
 
 echo "Creating conda environment from environment.yaml..."
 # Commented out for testing, uncomment when ready
-conda env create -n "${ENV_NAME}" -f environment.yaml || {
+conda env create -n "${ENV_NAME}" -f environment_py38.yaml || {
     echo "Environment ${ENV_NAME} may already exist. Attempting update..."
-    conda env update -n "${ENV_NAME}" -f environment.yaml
+    conda env update -n "${ENV_NAME}" -f environment_py38.yaml
 }
 
 echo "Conda environment '${ENV_NAME}' is ready."
