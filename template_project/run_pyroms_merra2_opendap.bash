@@ -20,17 +20,17 @@ echo "============================="
 echo ""
 
 echo "Starting SLV (Pair, Qair, Tair, Uwind, Vwind)..."
-python3 test_getmerra_slv.py
+python3 get_MERRA_slv.py
 echo "5/11 Pair, Qair, Tair, Uwind, Vwind done"
 echo "----------------------"
 
 echo "Starting RAD (swrad, lwrad_down, cloud, albedo)..."
-python3 test_getmerra_rad.py
+python3 get_MERRA_rad.py
 echo "9/11 swrad, lwrad_down, cloud, albedo done"
 echo "----------------------"
 
 echo "Starting INT (rain, snow)..."
-python3 test_getmerra_int.py
+python3 get_MERRA_int.py
 echo "11/11 rain, snow done"
 echo "----------------------"
 
