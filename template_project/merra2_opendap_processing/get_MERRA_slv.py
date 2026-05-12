@@ -50,7 +50,7 @@ if __name__ == '__main__':
     print(f"Starting download for SLV files from {time_range[0]} to {time_range[1]}...")
 
     # Get urls
-    cmr_urls = [urls for urls in get_cmr_urls(ccid=MERRA2_M2T1NXSLV_ccid, time_range=time_range)]
+    cmr_urls = [urls for urls in get_cmr_urls(ccid=MERRA2_M2T1NXSLV_ccid, time_range=time_range, limit=1000)]
 
     # Login to Earthdata
     try:
